@@ -1,0 +1,17 @@
+# Node
+node_modules/
+
+# Builds
+build/
+dist/
+
+# Env files
+.env
+.env.*
+
+# Mac files
+.DS_Store
+
+# Deployment
+deploy/.env
+
