@@ -147,7 +147,7 @@ contract WhotArenaV3 {
     }
 
     /**
-     * @notice Submit match result (arbiter only). Pays winner in $WHOT.
+     * @notice Submit match result. Any match participant can settle.
      */
     function resolveMatch(
         uint256 _matchId,
@@ -155,10 +155,17 @@ contract WhotArenaV3 {
         WinCondition _condition,
         uint256[] calldata _playerScores,
         bytes32 _gameHash
-    ) external onlyArbiter {
+    ) external {
         Match storage m = _matches[_matchId];
         require(m.state == MatchState.Active, "Match not active");
         require(_playerScores.length == m.players.length, "Score count mismatch");
+
+        // Verify caller is a match participant
+        bool callerInMatch = false;
+        for (uint256 i = 0; i < m.players.length; i++) {
+            if (m.players[i] == msg.sender) { callerInMatch = true; break; }
+        }
+        require(callerInMatch || msg.sender == arbiter, "Not a participant");
 
         bool winnerFound = false;
         for (uint256 i = 0; i < m.players.length; i++) {

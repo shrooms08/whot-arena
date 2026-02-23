@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from "react";
 
 // ═══ CONTRACT ═══
-const V2="0x7b64ef47ee33DFD20aD0e1Bf92ddd3322559689e"; 
+const V2="0x419968e7f3c08Aa9b4e55dD3059D6a1317F9572a"; 
 const WHOT_TOKEN="0x453C3a58Dd6bA56Cf87A7C3E98960F78FF037777"; 
 const RPC_URLS=["https://rpc.monad.xyz","https://rpc1.monad.xyz","https://rpc2.monad.xyz","https://rpc3.monad.xyz","https://rpc-mainnet.monadinfra.com"];
 const RPC=RPC_URLS[0];
